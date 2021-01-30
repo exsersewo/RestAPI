@@ -20,6 +20,9 @@ steps:
     version: '5.0.x'
 
 - task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: ''
+    checkLatest: true
 
 - task: NuGetCommand@2
   inputs:
