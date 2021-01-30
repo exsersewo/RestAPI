@@ -3,6 +3,13 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>preview</LangVersion>
+	<Version>1.0.0.0</Version>
+	<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	<Company>Exsersewo</Company>
+	<Authors>Exsersewo</Authors>
+	<Product>RestAPI</Product>
+	<Description>Turn any database into a GET-able Rest API</Description>
+	<Copyright>Copyright © 2021</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
