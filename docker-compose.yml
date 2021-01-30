@@ -1,0 +1,12 @@
+version: '3'
+services:
+  api:
+    build: 
+        context: .
+        dockerfile: src/RestAPI/Dockerfile
+    ports:
+      - "80:80"
+    container_name: "restapi"
+    env_file:
+        - .env
+    network_mode: host
