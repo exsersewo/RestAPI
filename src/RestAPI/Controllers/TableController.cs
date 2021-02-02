@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Xml;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -38,7 +39,7 @@ namespace RestAPI.Controllers
 			}
 		}
 
-		private dynamic ConvertResponse(List<List<KeyValuePair<string, string>>> tableContent, string format, HttpResponse Response)
+		private static dynamic ConvertResponse(List<List<KeyValuePair<string, string>>> tableContent, string format, HttpResponse Response)
 		{
 			switch (format.ToLowerInvariant())
 			{
@@ -46,7 +47,7 @@ namespace RestAPI.Controllers
 					{
 						Response.ContentType = "application/json";
 
-						List<dynamic> content = new List<dynamic>();
+						List<dynamic> content = new();
 
 						foreach (var result in tableContent)
 						{
@@ -147,9 +148,9 @@ namespace RestAPI.Controllers
 		}
 
 		[HttpGet("{table}.{format}")]
-		public dynamic Get(string table, string format)
+		public async Task<dynamic> GetAsync(string table, string format)
 		{
-			database.OpenAsync().GetAwaiter().GetResult();
+			await database.OpenAsync();
 
 			string tableLocation = table;
 
@@ -158,9 +159,9 @@ namespace RestAPI.Controllers
 				tableLocation = $"public.{table}";
 			}
 
-			if (database.DoesTableExistAsync(tableLocation).GetAwaiter().GetResult())
+			if (await database.DoesTableExistAsync(tableLocation))
 			{
-				var tableContent = database.GetTableAsync(tableLocation, BlacklistedFields.ToArray()).GetAwaiter().GetResult();
+				var tableContent = await database.GetTableAsync(tableLocation, BlacklistedFields.ToArray());
 				dynamic response = null;
 
 				if (tableContent != null)
@@ -184,9 +185,9 @@ namespace RestAPI.Controllers
 		}
 
 		[HttpGet("{area}/{table}.{format}")]
-		public dynamic Get(string area, string table, string format)
+		public async Task<dynamic> GetAsync(string area, string table, string format)
 		{
-			database.OpenAsync().GetAwaiter().GetResult();
+			await database.OpenAsync();
 
 			string tableLocation;
 
@@ -199,9 +200,9 @@ namespace RestAPI.Controllers
 				tableLocation = $"{area}/{table}"; //default assumption for now
 			}
 
-			if (database.DoesTableExistAsync(tableLocation).GetAwaiter().GetResult())
+			if (await database.DoesTableExistAsync(tableLocation))
 			{
-				var tableContent = database.GetTableAsync(tableLocation, BlacklistedFields.ToArray()).GetAwaiter().GetResult();
+				var tableContent = await database.GetTableAsync(tableLocation, BlacklistedFields.ToArray());
 				dynamic response = null;
 
 				if (tableContent != null)

@@ -8,6 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{197287CE-CDEF-4FF8-9846-EFF913496E1A}"
 	ProjectSection(SolutionItems) = preProject
 		..\.env.default = ..\.env.default
+		..\azure-pipelines.yml = ..\azure-pipelines.yml
+		..\NuGet.config = ..\NuGet.config
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{98D984C1-F9F9-4D41-8CDA-4D87F5C0A774}"
@@ -19,7 +21,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Github", "Github", "{766907EE-8F38-477E-BD1D-F34EA54AC784}"
 	ProjectSection(SolutionItems) = preProject
 		..\.github\LICENSE = ..\.github\LICENSE
-		..\.github\README = ..\.github\README
+		..\.github\README.md = ..\.github\README.md
 	EndProjectSection
 EndProject
 Global
