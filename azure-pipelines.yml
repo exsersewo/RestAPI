@@ -33,7 +33,6 @@ steps:
 
 - task: VSBuild@1
   inputs:
-    platform: 'x64'
+    platform: '$(buildPlatform)'
     solution: '$(solution)'
     configuration: '$(buildConfiguration)'
-    platform: '$(buildPlatform)'
